@@ -1,0 +1,30 @@
+
+version: '3.9'
+
+services:
+
+  backend:
+    build: ./backend-spring
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+
+  frontend:
+    build: ./frontend-react
+    ports:
+      - "5173:5173"
+
+  ai-engine:
+    build: ./ai-engine
+    ports:
+      - "8000:8000"
+
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: neuroclass
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
