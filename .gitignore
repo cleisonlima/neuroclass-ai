@@ -1,0 +1,12 @@
+# Java build artifacts
+backend-spring/target/
+
+# Node modules
+frontend-react/node_modules/
+
+# Vite build output
+frontend-react/dist/
+
+# OS files
+.DS_Store
+thumbs.db
