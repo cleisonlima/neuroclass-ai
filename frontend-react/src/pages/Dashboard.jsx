@@ -187,9 +187,32 @@ function Dashboard() {
                 Interesses do aluno
                 <input value={interest} onChange={e => setInterest(e.target.value)} placeholder="programação, design, dados" />
               </label>
-              <button className="secondary-button" type="submit">Criar recomendação</button>
+              <div className="button-group">
+                <button className="secondary-button" type="submit">Criar recomendação</button>
+                <button className="secondary-button" type="button" onClick={handleStudyPlan}>Plano de estudo</button>
+              </div>
             </form>
           </div>
+
+          {recommendation && (
+            <div className="panel-card result-card">
+              <div className="result-header">
+                <div>
+                  <h4>{recommendation.recommended_course}</h4>
+                  <p className="result-note">{recommendation.reason}</p>
+                </div>
+                <span className="pill info">Confiança {Math.round(recommendation.confidence * 100)}%</span>
+              </div>
+              <div className="result-list">
+                <strong>Cursos populares</strong>
+                <ul>
+                  {Object.entries(recommendation.popular_courses || {}).map(([courseName, count]) => (
+                    <li key={courseName}>{courseName}: {count}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
 
           {studyPlan && (
             <div className="panel-card result-card">
@@ -207,6 +230,29 @@ function Dashboard() {
               </ul>
             </div>
           )}
+
+          <div className="panel-card table-card">
+            <h3>Alunos cadastrados</h3>
+            {students.length === 0 ? (
+              <p>Nenhum aluno cadastrado.</p>
+            ) : (
+              <div className="student-grid">
+                {students.map(student => (
+                  <article key={student.id || `${student.name}-${student.course}`} className="student-card">
+                    <div className="student-header">
+                      <strong>{student.name}</strong>
+                      <span>{student.course}</span>
+                    </div>
+                    <div className="student-meta">
+                      <span>Progresso: {student.progressPercent}%</span>
+                      <span>Horas/semana: {student.weeklyStudyHours}</span>
+                      <span>Engajamento: {student.engagementLevel}</span>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </div>
 
           <div className="panel-card chart-card">
             <h3>Visão de cursos</h3>
