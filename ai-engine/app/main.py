@@ -34,6 +34,12 @@ class RecommendationResponse(BaseModel):
     reason: str
     popular_courses: dict
 
+class ChatRequest(BaseModel):
+    message: str
+
+class ChatResponse(BaseModel):
+    message: str
+
 class RiskItem(BaseModel):
     student_id: Optional[int]
     student_name: str
@@ -254,4 +260,57 @@ def recommend(request: RecommendationRequest):
         confidence=round(confidence, 2),
         reason=reason,
         popular_courses=distribution
+    )
+
+@app.post('/chat', response_model=ChatResponse)
+def chat(request: ChatRequest):
+    students = fetch_students()
+    insights = build_insights(students)
+    risk_profile = build_risk_profile(students)
+    message = request.message.strip()
+    if not message:
+        return ChatResponse(message='Escreva uma pergunta para que eu possa ajudar.')
+
+    text = message.lower()
+    if 'risco' in text or 'perigo' in text or 'crítico' in text:
+        return ChatResponse(
+            message=(
+                f'Atualmente há {risk_profile["high_risk"]} alunos em alto risco, '
+                f'{risk_profile["medium_risk"]} em risco médio e {risk_profile["low_risk"]} em baixo risco. '
+                'Use essas informações para priorizar apoio imediato.'
+            )
+        )
+
+    if 'curso' in text and ('mais popular' in text or 'popular' in text or 'melhor curso' in text or 'sugestão' in text):
+        if insights['most_popular_course']:
+            return ChatResponse(
+                message=(
+                    f'O curso mais popular no momento é {insights["most_popular_course"]}. '
+                    f'Esse curso tem {insights["course_distribution"].get(insights["most_popular_course"], 0)} alunos.'
+                )
+            )
+        return ChatResponse(message='Ainda não há cursos suficientes cadastrados para determinar o mais popular.')
+
+    if 'plano' in text or 'estudo' in text or 'recomende' in text:
+        recommended = insights['most_popular_course'] or 'análise de curso'
+        return ChatResponse(
+            message=(
+                f'Posso sugerir um plano com base nos dados atuais. O curso mais comum é {recommended}. '
+                'Tente perguntar algo como "Me ajude com um plano de estudo" para receber detalhes.'
+            )
+        )
+
+    if 'aluno' in text or 'alunos' in text:
+        return ChatResponse(
+            message=(
+                f'Existem {insights["total_students"]} alunos cadastrados. '
+                f'{risk_profile["high_risk"]} estão em alto risco e {risk_profile["medium_risk"]} em risco médio.'
+            )
+        )
+
+    return ChatResponse(
+        message=(
+            'Estou pronto para ajudar. Pergunte por exemplo: "Quem está em risco?", '
+            '"Qual curso é mais popular?" ou "Me ajude a montar um plano de estudo."'
+        )
     )

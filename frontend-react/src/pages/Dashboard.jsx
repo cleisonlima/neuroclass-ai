@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 function Dashboard() {
@@ -95,6 +96,10 @@ function Dashboard() {
           <span className="eyebrow">Dashboard</span>
           <h2>Visualize desempenho, risco e recomendações com clareza.</h2>
           <p>O dashboard apresenta apenas informações úteis para ação, sem expor detalhes de infraestrutura.</p>
+          <div className="hero-buttons">
+            <Link className="primary-button" to="/chat">Abrir chat</Link>
+            <Link className="secondary-button" to="/dashboard">Ver insights</Link>
+          </div>
         </div>
 
         <div className="hero-grid">

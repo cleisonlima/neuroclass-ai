@@ -16,7 +16,10 @@ function Navbar() {
         <NavLink to="/dashboard" className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}>Dashboard</NavLink>
       </nav>
 
-      <NavLink to="/dashboard" className="nav-action">Ver plataforma</NavLink>
+      <div className="nav-actions">
+        <NavLink to="/chat" className="nav-action">Abrir chat</NavLink>
+        <NavLink to="/dashboard" className="nav-action secondary">Ver dashboard</NavLink>
+      </div>
     </header>
   )
 }

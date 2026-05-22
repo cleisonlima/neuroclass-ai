@@ -110,12 +110,23 @@ a {
 }
 
 .nav-action {
-  padding: 12px 20px;
+  padding: 12px 18px;
   border: none;
   border-radius: 999px;
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
   color: #0f172a;
   font-weight: 700;
+}
+
+.nav-action.secondary {
+  background: rgba(56, 189, 248, 0.16);
+  color: var(--accent);
+}
+
+.nav-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .dashboard-shell {
@@ -410,6 +421,98 @@ a {
   gap: 16px;
 }
 
+.chat-shell {
+  padding: 32px 32px 64px;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.chat-panel {
+  display: grid;
+  gap: 24px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+
+.chat-header {
+  display: grid;
+  gap: 16px;
+}
+
+.chat-window {
+  display: grid;
+  gap: 14px;
+  min-height: 420px;
+  padding: 20px;
+  border-radius: 24px;
+  background: rgba(7, 13, 28, 0.94);
+  border: 1px solid rgba(56, 189, 248, 0.14);
+  overflow-y: auto;
+}
+
+.chat-bubble {
+  max-width: 84%;
+  padding: 18px 22px;
+  border-radius: 24px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.chat-bubble.assistant {
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  align-self: start;
+}
+
+.chat-bubble.user {
+  background: rgba(56, 189, 248, 0.18);
+  color: #ffffff;
+  align-self: end;
+  justify-self: end;
+}
+
+.chat-bubble p {
+  margin: 0;
+}
+
+.chat-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+}
+
+.chat-form input {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+}
+
+.chat-help {
+  display: grid;
+  gap: 10px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--text-secondary);
+}
+
+.chat-help strong {
+  color: var(--text);
+}
+
+@media (max-width: 720px) {
+  .chat-form {
+    grid-template-columns: 1fr;
+  }
+}
+
 .form-grid label {
   display: grid;
   gap: 8px;
@@ -525,7 +628,8 @@ a {
   margin-bottom: 42px;
 }
 
-.home-actions {
+.home-actions,
+.hero-buttons {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;

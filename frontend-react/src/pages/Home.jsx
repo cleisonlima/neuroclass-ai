@@ -11,6 +11,7 @@ function Home() {
           <div className="home-actions">
             <Link className="primary-button" to="/dashboard">Começar agora</Link>
             <Link className="secondary-button" to="/dashboard">Ver dashboard</Link>
+            <Link className="secondary-button" to="/chat">Abrir chat</Link>
           </div>
         </div>
 
@@ -36,8 +37,8 @@ function Home() {
           <p>Adicione novos alunos com características de progresso, carga horária e engajamento.</p>
         </article>
         <article className="feature-card">
-          <h3>Ações orientadas</h3>
-          <p>Receba recomendações geradas automaticamente com base em análise de engajamento e interesses.</p>
+          <h3>Chat inteligente</h3>
+          <p>Converse com o assistente para descobrir risco, recomendações e ações orientadas.</p>
         </article>
       </section>
     </main>
