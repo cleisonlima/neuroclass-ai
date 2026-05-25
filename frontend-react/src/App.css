@@ -1,201 +1,77 @@
-:root {
-  --bg: #070d1c;
-  --surface: #0f172a;
-  --surface-soft: #131c2f;
-  --surface-strong: #0b1220;
-  --text: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --accent: #38bdf8;
-  --accent-strong: #0ea5e9;
-  --success: #22c55e;
-  --warning: #f59e0b;
-  --danger: #fb7185;
-  --border: rgba(148, 163, 184, 0.18);
-  --shadow: 0 24px 90px rgba(0, 0, 0, 0.18);
-  --radius: 22px;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px;
-  color: var(--text);
-  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 24%), radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 30%), #070d1c;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--text);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 .app-shell {
   min-height: 100vh;
 }
 
-.navbar {
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 20px 32px;
-  background: rgba(15, 23, 42, 0.95);
-  border-bottom: 1px solid rgba(148, 163, 184, 0.12);
-  backdrop-filter: blur(16px);
+.hero-gradient {
+  background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.14), transparent 24%), radial-gradient(circle at bottom right, rgba(56, 189, 248, 0.12), transparent 30%);
 }
 
-.brand-group {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.card-accent {
+  border-radius: 1.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 24px 70px rgba(79, 70, 229, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.brand-badge {
-  width: 52px;
-  height: 52px;
-  border-radius: 18px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(14, 165, 233, 0.2));
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  color: var(--accent);
-  font-size: 24px;
+.card-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 30px 90px rgba(79, 70, 229, 0.12);
 }
 
-.brand-group h1 {
-  margin: 0;
-  font-size: 1.35rem;
+.dark-theme .card-accent {
+  background: rgba(15, 23, 42, 0.88);
+  border-color: rgba(71, 85, 105, 0.18);
 }
 
-.brand-group p {
-  margin: 4px 0 0;
-  color: var(--text-secondary);
-  font-size: 0.95rem;
+.home-hero-card {
+  border-radius: 2rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 32px 90px rgba(79, 70, 229, 0.10);
+  backdrop-filter: blur(18px);
 }
 
-.nav-links {
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
+.dark-theme .home-hero-card {
+  background: rgba(15, 23, 42, 0.88);
+  border-color: rgba(71, 85, 105, 0.18);
 }
 
-.nav-links a {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  transition: color 0.2s ease;
+.feature-panel {
+  border-radius: 1.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 2rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.nav-links a:hover {
-  color: var(--accent);
+.feature-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 30px 90px rgba(79, 70, 229, 0.12);
 }
 
-.nav-action {
-  padding: 12px 18px;
-  border: none;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-  color: #0f172a;
-  font-weight: 700;
+.dark-theme .feature-panel {
+  background: rgba(15, 23, 42, 0.88);
+  border-color: rgba(71, 85, 105, 0.18);
 }
 
-.nav-action.secondary {
-  background: rgba(56, 189, 248, 0.16);
-  color: var(--accent);
-}
-
-.nav-actions {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.dashboard-shell {
-  padding: 32px 32px 64px;
-  max-width: 1240px;
-  margin: 0 auto;
-}
-
-.hero-panel {
-  display: grid;
-  gap: 24px;
-  grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr);
-  align-items: stretch;
-  margin-bottom: 28px;
-}
-
-.hero-copy .eyebrow {
+.cta-pill {
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #7c3aed, #0ea5e9);
+  color: #ffffff;
   display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--accent);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  padding: 0.65rem 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
 }
 
-.hero-copy h2 {
-  margin: 16px 0 16px;
-  font-size: clamp(2.2rem, 3vw, 3.4rem);
-  line-height: 1.05;
-}
-
-.hero-copy p {
-  max-width: 620px;
-  color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.75;
-}
-
-.hero-grid {
-  display: grid;
-  gap: 18px;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-}
-
-.hero-card {
-  background: rgba(15, 23, 42, 0.95);
-  padding: 24px;
-  border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: var(--shadow);
-}
-
-.card-label {
-  display: block;
-  color: var(--text-secondary);
-  margin-bottom: 14px;
-  font-size: 0.95rem;
-}
-
-.hero-card strong {
-  font-size: 2rem;
-}
-
-.section-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 26px;
+@media (max-width: 991px) {
+  .home-hero-card,
+  .feature-panel {
+    padding: 1.75rem;
+  }
 }
 
 .tab-button {
@@ -227,8 +103,8 @@ a {
 .status-card,
 .insight-card,
 .panel-card {
-  background: rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--surface-soft);
+  border: 1px solid rgba(148, 163, 184, 0.16);
   border-radius: var(--radius);
   padding: 24px;
   box-shadow: var(--shadow);
@@ -362,10 +238,10 @@ a {
 }
 
 .student-card {
-  background: rgba(15, 23, 42, 0.95);
+  background: var(--surface);
   padding: 22px;
   border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.16);
 }
 
 .student-header {
@@ -548,10 +424,10 @@ a {
 }
 
 .result-card {
-  background: rgba(15, 23, 42, 0.95);
+  background: var(--surface-soft);
   padding: 24px;
   border-radius: var(--radius);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(148, 163, 184, 0.16);
 }
 
 .result-header {
