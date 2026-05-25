@@ -4,8 +4,9 @@ backend-spring/target/
 # Node modules
 frontend-react/node_modules/
 
-# Vite build output
+# Vite and Next.js build output
 frontend-react/dist/
+frontend-react/.next/
 
 # OS files
 .DS_Store
