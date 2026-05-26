@@ -59,49 +59,55 @@ export default function ChatPage() {
   }
 
   return (
-    <main className="chat-wrap">
-      <div className="chat-head">
-        <div>
-          <span className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-600 dark:text-violet-300">Chat inteligente</span>
-          <h2 className="mt-2 text-2xl font-semibold text-slate-950 dark:text-white">Converse em tempo real com o NeuroClass.</h2>
-          <p className="text-sm text-slate-600 dark:text-slate-300">Use este espaço para tirar dúvidas, explorar riscos e descobrir recomendações personalizadas.</p>
-        </div>
-      </div>
-
-      <div className="chips" style={{ marginTop: 12 }}>
-        <div className="chip" onClick={() => sendChip('Quais alunos estão em alto risco?')}>Alunos em risco</div>
-        <div className="chip" onClick={() => sendChip('Qual é o curso mais popular?')}>Curso popular</div>
-        <div className="chip" onClick={() => sendChip('Me dê dicas para reduzir a evasão escolar')}>Reduzir evasão</div>
-        <div className="chip" onClick={() => sendChip('Como criar um plano de estudo eficaz?')}>Plano de estudo</div>
-      </div>
-
-      <div id="chat-window" className="chat-window">
-        {messages.map((m, i) => (
-          <div key={i} className={`bubble ${m.role}`}>
-            <div className="bubble-label">{m.role === 'user' ? 'Você' : 'NeuroClass IA'}</div>
-            <div dangerouslySetInnerHTML={{ __html: String(m.content).replace(/\n/g, '<br/>') }} />
+    <main className="chat-shell">
+      <section className="chat-panel">
+        <div className="chat-header">
+          <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-600 dark:text-violet-300">Chat inteligente</span>
+            <h2 className="mt-2 text-2xl font-semibold text-slate-950 dark:text-white">Converse em tempo real com o NeuroClass.</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-300">Use este espaço para tirar dúvidas, explorar riscos e descobrir recomendações personalizadas.</p>
           </div>
-        ))}
-      </div>
+        </div>
 
-      <div className="chat-row">
-        <textarea
-          className="chat-input"
-          rows={1}
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          onKeyDown={onKey}
-          placeholder="Escreva sua pergunta aqui..."
-        />
-        <button className="chat-send" onClick={sendChat} disabled={isSending}>
-          {isSending ? 'Enviando...' : 'Enviar →'}
-        </button>
-      </div>
+        <div className="chat-help">
+          <strong>Dicas rápidas</strong>
+          <div className="mt-3 flex flex-wrap gap-3">
+            {['Quais alunos estão em alto risco?', 'Qual é o curso mais popular?', 'Reduzir evasão', 'Plano de estudo'].map((item) => (
+              <button
+                key={item}
+                type="button"
+                className="rounded-full border border-slate-200 bg-white/90 px-4 py-2 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 dark:border-slate-700/80 dark:bg-slate-900/80 dark:text-slate-100 dark:hover:bg-slate-800"
+                onClick={() => sendChip(item)}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        </div>
 
-      <div style={{ marginTop: 12 }} className="empty">
-        <strong>Dicas rápidas:</strong>
-        <p style={{ marginTop: 6 }}>'Quem está em risco?', 'Qual curso está mais forte?', 'Me ajude com um plano de estudo'.</p>
-      </div>
+        <div id="chat-window" className="chat-window">
+          {messages.map((m, i) => (
+            <div key={i} className={`chat-bubble ${m.role}`}>
+              <div className="bubble-label">{m.role === 'user' ? 'Você' : 'NeuroClass IA'}</div>
+              <div dangerouslySetInnerHTML={{ __html: String(m.content).replace(/\n/g, '<br/>') }} />
+            </div>
+          ))}
+        </div>
+
+        <form className="chat-form" onSubmit={sendChat}>
+          <textarea
+            className="chat-input"
+            rows={2}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={onKey}
+            placeholder="Escreva sua pergunta aqui..."
+          />
+          <button className="primary-button" type="submit" disabled={isSending}>
+            {isSending ? 'Enviando...' : 'Enviar →'}
+          </button>
+        </form>
+      </section>
     </main>
   )
 }
