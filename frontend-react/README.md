@@ -1,16 +1,36 @@
-# React + Vite
+﻿# NeuroClass AI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+O frontend é um aplicativo Next.js 15 que fornece a interface do usuário principal para o projeto NeuroClass AI.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias
+- Next.js 15
+- React 18
+- Tailwind CSS
+- Axios
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 💻 Scripts úteis
+```bash
+npm install
+npm run dev
+npm run build
+npm run start
+```
 
-## React Compiler
+## 🧪 Local
+No diretório `frontend-react`:
+```bash
+npm install
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O frontend é exposto na porta `3000` pelo Docker Compose e consome o backend e o AI Engine a partir de:
+- `http://localhost:8080`
+- `http://localhost:8000`
 
-## Expanding the ESLint configuration
+## ⚙️ Variáveis públicas
+O Docker Compose define:
+- `NEXT_PUBLIC_API_BASE_URL=http://localhost:8080`
+- `NEXT_PUBLIC_AI_BASE_URL=http://localhost:8000`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 Observações
+Este projeto usa a rota de aplicativo do Next.js e um layout global centralizado em `src/app`.

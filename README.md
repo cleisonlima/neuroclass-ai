@@ -6,21 +6,21 @@ Plataforma inteligente para gestão acadêmica com interface moderna, análise d
 
 ## 🌟 Visão geral
 O NeuroClass AI integra:
-- **Frontend** moderno em React + Vite com tema claro/escuro
-- **Backend** em Spring Boot com Spring Data JPA e PostgreSQL
-- **AI Engine** em FastAPI para análises e recomendações
-- **Docker Compose** para ambiente local completo
+- **Frontend** em Next.js 15 com Tailwind CSS e tema claro/escuro
+- **Backend** em Spring Boot 3.2 com Spring Data JPA e PostgreSQL
+- **AI Engine** em FastAPI para recomendações e análise de risco
+- **Docker Compose** para orquestração de ambiente local completo
 
 ## 🚀 Principais funcionalidades
-- Interface de landing page premium e responsiva
-- Dashboard com métricas de alunos e risco
+- Landing page responsiva e visual moderno
+- Dashboard com perfil dos alunos, risco e recomendações
 - Cadastro de alunos com progresso, engajamento e notas
-- Recomendação de estudos baseada em dados do aluno
+- Relatórios de risco e plano de estudos gerados por AI
 - Theme toggle claro/escuro no frontend
-- Orquestração e deploy local via Docker Compose
+- Deploy local simplificado com Docker Compose
 
 ## 🧱 Tecnologias usadas
-- React, Vite, Tailwind CSS
+- Next.js 15, React 18, Tailwind CSS
 - Java 21, Spring Boot 3.2, Spring Data JPA
 - Python 3.11, FastAPI, Uvicorn
 - PostgreSQL 15
@@ -28,20 +28,20 @@ O NeuroClass AI integra:
 
 ## 📁 Estrutura do projeto
 - `backend-spring/` - API Java Spring Boot
-- `frontend-react/` - SPA React + Vite
+- `frontend-react/` - frontend Next.js 15
 - `ai-engine/` - serviço Python FastAPI
 - `docker-compose.yml` - orquestração dos serviços
 - `.github/workflows/deploy.yml` - pipeline GitHub Actions
 
 ## 💻 Executando localmente
-### 1. Docker Compose
+### 1. Subir todos os serviços
 No diretório raiz:
 ```bash
 docker compose up --build -d
 ```
 
-### 2. Endpoints
-- Frontend: `http://localhost:5173`
+### 2. Acessar a aplicação
+- Frontend: `http://localhost:3000`
 - Backend: `http://localhost:8080`
 - AI Engine: `http://localhost:8000`
 
@@ -56,6 +56,7 @@ docker compose down
 cd frontend-react
 npm install
 npm run build
+npm run start
 ```
 
 ### Backend
@@ -71,12 +72,17 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+## 🌐 Variáveis de ambiente
+Os serviços usam as seguintes variáveis configuradas no `docker-compose.yml`:
+- `NEXT_PUBLIC_API_BASE_URL=http://localhost:8080`
+- `NEXT_PUBLIC_AI_BASE_URL=http://localhost:8000`
+
 ## ✅ GitHub Actions
 O pipeline `deploy.yml` valida:
 - build do backend Spring Boot
-- build do frontend React + Vite
-- instalação e validação do AI Engine Python
+- build do frontend Next.js 15
+- build e instalação do AI Engine Python
 
 ## 📌 Observações
-- O frontend usa `VITE_API_BASE_URL` e `VITE_AI_BASE_URL` para comunicação entre serviços.
-- A aplicação está pronta para ser executada localmente ou adaptada para deploy em nuvem.
+- O frontend está configurado para apontar ao backend e AI Engine via variáveis públicas.
+- O projeto já está pronto para execução local e pode ser adaptado para deploy em nuvem.
